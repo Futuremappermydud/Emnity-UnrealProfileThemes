@@ -1,11 +1,16 @@
 {
-   "name": "SilentTyping",
+   "name": "UnrealProfileThemes",
    "version": "1.0.0",
-   "description": "Silences your typing indicator.",
+   "description": "Uses hidden 3y3 codes to allow you to change your profile theme colors for anyone using the plugin",
    "authors": [
       {
-         "name": "eternal",
-         "id": "263689920210534400"
+         "name": "FutureMapper",
+         "profile": "https://github.com/Futuremappermydud",
+         "id": "741727188809810181"
       }
-   ]
+   ],
+   "links": {
+      "source": "https://github.com/Futuremappermydud/Emnity-UnrealProfileThemes/",
+      "dist": "https://github.com/Futuremappermydud/Emnity-UnrealProfileThemes/blob/main/dist/UnrealProfileThemes.js"
+    }
 }
