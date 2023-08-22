@@ -1,16 +1,23 @@
 import { Plugin, registerPlugin } from 'enmity/managers/plugins';
 import { React, StyleSheet } from 'enmity/metro/common';
-import { getByName, getByProps } from 'enmity/metro';
+import { bulk, filters, getByName, getByProps } from 'enmity/metro';
 import { create } from 'enmity/patcher';
 import manifest from '../manifest.json';
 import { findInReactTree } from "enmity/utilities"
 import Settings from './components/Settings';
 import { getBoolean } from 'enmity/api/settings';
 import { Button, View } from 'enmity/components';
+import { cp } from 'fs';
 
 const Patcher = create('unreal-profile-colors');
 const UserProfileStore = getByProps("getUserProfile");
 const EditProfileTheme = getByName("EditProfileTheme", { default: false })
+
+const [
+   Clipboard,
+] = bulk(
+   filters.byProps('setString'),
+);
 
 function encode(primary: number, accent: number): string {
    const message = `[#${primary.toString(16).padStart(6, "0")},#${accent.toString(16).padStart(6, "0")}]`;
@@ -90,15 +97,20 @@ const UnrealProfileColors: Plugin = {
          let EditThemeSection = findInReactTree(res, r => 
             r?.type?.displayName === "View" &&
             r?.props?.children.findIndex(i => i?.type?.name === "EditProfileTheme") !== -1
-        )?.props?.children
+        )?.props;
 
-        EditThemeSection.unshift(
+        EditThemeSection?.children?.unshift(
          <View>
             <Button 
                color='brand'
                text='Copy 3y3'
                size='large'
-               onPress={() => console.log('pressed')}
+               onPress={() => {
+                  let colors = EditThemeSection?.pendingThemeColors;
+                  if(!colors) return;
+                  let encoded = encode(colors[0], colors[1]);
+                  Clipboard.setString(encoded);
+               }}
                style={styles.button}
             />
          </View>
