@@ -94,9 +94,11 @@ const UnrealProfileColors: Plugin = {
       });
       Patcher.after(EditProfileTheme, 'default', (_, __, res) => {
          console.log('hello');
-         let EditThemeSection = findInReactTree(res, r => 
-            r?.type?.displayName === "View" &&
-            r?.props?.children.findIndex(i => i?.type?.name === "EditProfileTheme") !== -1
+         let EditThemeSection = findInReactTree(res, r => {
+            console.log(r?.type?.displayName);
+            console.log(r?.props?.children.findIndex(i => i?.type?.name === "EditProfileTheme"));
+            return r?.type?.displayName === "View" && r?.props?.children.findIndex(i => i?.type?.name === "EditProfileTheme") !== -1
+         }
         )?.props;
 
         EditThemeSection?.children?.unshift(
