@@ -85,7 +85,7 @@ const UnrealProfileColors: Plugin = {
          }
          return result;
       });
-      Patcher.after(EditProfileTheme.default, 'theme', (_, __, res) => {
+      Patcher.after(EditProfileTheme.default, 'type', (_, __, res) => {
          console.log('hello');
          let EditThemeSection = findInReactTree(res, r => 
             r?.type?.displayName === "View" &&
