@@ -96,7 +96,8 @@ const UnrealProfileColors: Plugin = {
          console.log('hello');
          let EditThemeSection = findInReactTree(res, r => {
             console.log(r?.type?.displayName);
-            console.log(r?.props?.children.findIndex(i => i?.type?.name === "EditProfileTheme"));
+            r?.props?.children?.forEach(value => console.log(value?.type?.name));
+            console.log('----------------------------------------------------------------');
             return r?.type?.displayName === "View" && r?.props?.children.findIndex(i => i?.type?.name === "EditProfileTheme") !== -1
          }
         )?.props;

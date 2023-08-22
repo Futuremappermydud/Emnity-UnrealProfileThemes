@@ -38,7 +38,7 @@ export default ({ settings }: SettingsProps) => {
       <View style={[styles.container]}>
          <FormRow
             label="Nitro First"
-            subLabel="If on then use nitro colors first if available then 3y3 colors. If off only use 3y3 codes"
+            subLabel="If on then use nitro colors first if available then 3y3 colors. If off then only use 3y3 codes"
             trailing={<FormSwitch value={getBoolean(manifest.name, "nitroFirst", true)} onChange={(value)=>{set(manifest.name, "nitroFirst", value);}} />}
          />
       </View>
