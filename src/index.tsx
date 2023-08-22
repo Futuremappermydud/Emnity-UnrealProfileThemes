@@ -98,7 +98,7 @@ const UnrealProfileColors: Plugin = {
             console.log(r?.type?.displayName);
             r?.props?.children?.forEach(value => console.log(value?.type?.name));
             console.log('----------------------------------------------------------------');
-            return r?.type?.displayName === "View" && r?.props?.children.findIndex(i => i?.type?.name === "EditProfileTheme") !== -1
+            return r?.type?.displayName === "View" && r?.props?.children.findIndex(i => i?.type?.name === "ColorSwatch") !== -1
          }
         )?.props;
 
