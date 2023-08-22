@@ -89,7 +89,7 @@ const UnrealProfileColors: Plugin = {
          console.log('hello');
          let EditThemeSection = findInReactTree(res, r => 
             r?.type?.displayName === "View" &&
-            r?.props?.children.findIndex(i => i?.type?.name === "UserProfile") !== -1
+            r?.props?.children.findIndex(i => i?.type?.name === "EditProfileTheme") !== -1
         )?.props?.children
 
         EditThemeSection.unshift(
