@@ -10,7 +10,7 @@ import { Button, View } from 'enmity/components';
 
 const Patcher = create('unreal-profile-colors');
 const UserProfileStore = getByProps("getUserProfile");
-const EditProfileTheme = getByName("EditProfileTheme")
+const EditProfileTheme = getByName("EditProfileTheme", { default: false })
 
 function encode(primary: number, accent: number): string {
    const message = `[#${primary.toString(16).padStart(6, "0")},#${accent.toString(16).padStart(6, "0")}]`;
@@ -85,7 +85,7 @@ const UnrealProfileColors: Plugin = {
          }
          return result;
       });
-      Patcher.after(EditProfileTheme.default, 'type', (_, __, res) => {
+      Patcher.after(EditProfileTheme, 'default', (_, __, res) => {
          console.log('hello');
          let EditThemeSection = findInReactTree(res, r => 
             r?.type?.displayName === "View" &&
