@@ -31,7 +31,6 @@ const UnrealProfileColors: Plugin = {
    },
 
    getSettingsPanel({ settings }) {
-      return <Settings settings={settings} />;
    }
 };
 
