@@ -106,7 +106,7 @@ const UnrealProfileColors: Plugin = {
          <View>
             <Button 
                color='brand'
-               text='Copy 3y3'
+               title='Copy 3y3'
                size='large'
                onPress={() => {
                   let primaryPicker;
