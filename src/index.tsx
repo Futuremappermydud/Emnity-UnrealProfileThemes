@@ -69,7 +69,7 @@ const UnrealProfileColors: Plugin = {
                   let encoded = encode(primaryPicker?.props?.color, accentPicker?.props?.color);
                   Clipboard.setString(encoded);
                }}
-               style={styles.button}
+               style={styles.container}
             >
                <Text style={styles.text}>Copy 3y3</Text>
             </TouchableOpacity>
