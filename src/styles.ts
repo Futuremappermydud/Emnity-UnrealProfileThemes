@@ -7,6 +7,7 @@ export const styles = StyleSheet.createThemedStyleSheet({
        height: 50,
        borderRadius: 5,
        margin: 5,
+       marginTop: 0,
  
        justifyContent: 'center',
        alignItems: 'center',
