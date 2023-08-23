@@ -46,11 +46,6 @@ export default ({ settings }: SettingsProps) => {
             subLabel="If enabled then 3y3 codes will be stripped after parsing so that they are not visible. This will make it difficult to edit your bio."
             trailing={<FormSwitch value={settings.getBoolean("strip", false)} onValueChange={()=>{settings.toggle("strip", false);}} />}
          />
-         <FormRow
-            label="Disable All Profile Themes"
-            subLabel="This will get rid of all profile theming regardless of 3y3 or nitro."
-            trailing={<FormSwitch value={settings.getBoolean("disableAllThemes", false)} onValueChange={()=>{settings.toggle("disableAllThemes", false);}} />}
-         />
       </View>
    </ScrollView>;
 };

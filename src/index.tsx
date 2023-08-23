@@ -27,11 +27,6 @@ const UnrealProfileColors: Plugin = {
       //Decodes 3y3 from bio and assigns color
       Patcher.instead(UserProfileStore, 'getUserProfile', (self, args, res) => {
          let result = res.apply(self, args);
-         if (getBoolean(manifest.name, "disableAllThemes", false)) 
-         {
-            result.themeColors = undefined;
-            return result;
-         }
          if (getBoolean(manifest.name, "nitroFirst", true) && result?.themeColors) return result;
          const colors = decode(result?.bio);
          if (colors) {
