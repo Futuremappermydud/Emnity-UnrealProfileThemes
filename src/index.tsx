@@ -29,7 +29,7 @@ const UnrealProfileColors: Plugin = {
          let result = res.apply(self, args);
          if (getBoolean(manifest.name, "disableAllThemes", false)) 
          {
-            result.themeColors = [];
+            result.themeColors = undefined;
             return result;
          }
          if (getBoolean(manifest.name, "nitroFirst", true) && result?.themeColors) return result;
