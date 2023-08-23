@@ -15,7 +15,7 @@ export const styles = StyleSheet.createThemedStyleSheet({
    },
    text: {
        color: Constants.ThemeColorMap.TEXT_NORMAL,
-       fontFamily: Constants.PRIMARY_BOLD,
+       fontFamily: Constants.Fonts.PRIMARY_BOLD,
  
        paddingLeft : 10,
        paddingRight : 10,
