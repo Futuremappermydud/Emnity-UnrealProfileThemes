@@ -4,7 +4,7 @@ export const styles = StyleSheet.createThemedStyleSheet({
     container: {
        backgroundColor: Constants.Colors.BRAND_500,
  
-       height: 40,
+       height: 50,
        borderRadius: 5,
        margin: 5,
  

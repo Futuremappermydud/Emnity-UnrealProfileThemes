@@ -12,6 +12,7 @@ import { styles } from './styles';
 
 const Patcher = create('unreal-profile-colors');
 const UserProfileStore = getByProps("getUserProfile");
+const UserStore = getByProps("getUser", "getCurrentUser")
 const EditProfileTheme = getByName("EditProfileTheme", { default: false })
 
 const [
@@ -24,6 +25,7 @@ const UnrealProfileColors: Plugin = {
    ...manifest,
 
    onStart() {
+      //Decodes 3y3 from bio and assigns color
       Patcher.instead(UserProfileStore, 'getUserProfile', (self, args, res) => {
          let result = res.apply(self, args);
          if (getBoolean(manifest.name, "nitroFirst", true) && result?.themeColors) return result;
@@ -31,16 +33,15 @@ const UnrealProfileColors: Plugin = {
          if (colors) {
             result.themeColors = colors;
             result.premiumType = 2;
-            result.bio = getFixedBio(result?.bio);
+            let currentUser = UserStore.getCurrentUser();
+            if(!currentUser) return result;
+            result.bio = getFixedBio(result?.bio, (currentUser?.userId == result?.userId ? '*[3y3 code only visible to you]*' : ''));
          }
          return result;
       });
+      //Adds copy button to profile edit
       Patcher.after(EditProfileTheme, 'default', (_, __, res) => {
-         console.log('hello');
          let EditThemeSection = findInReactTree(res, r => {
-            console.log(r?.type?.displayName);
-            r?.props?.children?.forEach(value => console.log(value?.type?.name));
-            console.log('----------------------------------------------------------------');
             return r?.type?.displayName === "View" && r?.props?.children.findIndex(i => i?.type?.name === "ColorSwatch") !== -1
          }
         )?.props;
@@ -51,8 +52,8 @@ const UnrealProfileColors: Plugin = {
                onPress={() => {
                   let primaryPicker;
                   let accentPicker;
+                  //Iterate over children of theme selection and pick the primary and accent swatches
                   EditThemeSection?.children?.forEach(value => { 
-                     console.log(value?.type?.name) 
                      if(value?.type?.name === "ColorSwatch")
                      {
                         let type = value?.props?.description;

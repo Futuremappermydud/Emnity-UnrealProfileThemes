@@ -33,12 +33,12 @@ export function encode(primary: number, accent: number): string {
     }
  }
  
- export function getFixedBio(bioString: string): string | null {
+ export function getFixedBio(bioString: string, replacement: string): string | null {
     if (bioString == null) return null;
  
     const bio = bioString.replace(
        /\u{e005b}\u{e0023}([\u{e0061}-\u{e0066}\u{e0041}-\u{e0046}\u{e0030}-\u{e0039}]+?)\u{e002c}\u{e0023}([\u{e0061}-\u{e0066}\u{e0041}-\u{e0046}\u{e0030}-\u{e0039}]+?)\u{e005d}/u,
-       ''
+       replacement
    );
    return bio;
  }
