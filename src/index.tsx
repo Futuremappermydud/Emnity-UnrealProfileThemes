@@ -109,9 +109,24 @@ const UnrealProfileColors: Plugin = {
                text='Copy 3y3'
                size='large'
                onPress={() => {
-                  let colors = EditThemeSection?.pendingThemeColors;
-                  if(!colors) return;
-                  let encoded = encode(colors[0], colors[1]);
+                  let primaryPicker;
+                  let accentPicker;
+                  EditThemeSection?.children?.forEach(value => { 
+                     console.log(value?.type?.name) 
+                     if(value?.type?.name === "ColorSwatch")
+                     {
+                        let type = value?.props?.description;
+                        if(type == "Primary")
+                        {
+                           primaryPicker = value;
+                        }
+                        if(type == "Accent")
+                        {
+                           accentPicker = value;
+                        }
+                     }
+                  });
+                  let encoded = encode(primaryPicker?.props?.color, accentPicker?.props?.color);
                   Clipboard.setString(encoded);
                }}
                style={styles.button}
