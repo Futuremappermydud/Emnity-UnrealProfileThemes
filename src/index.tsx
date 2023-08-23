@@ -1,13 +1,12 @@
 import { Plugin, registerPlugin } from 'enmity/managers/plugins';
-import { React, StyleSheet } from 'enmity/metro/common';
+import { React, StyleSheet, Constants } from 'enmity/metro/common';
 import { bulk, filters, getByName, getByProps } from 'enmity/metro';
 import { create } from 'enmity/patcher';
 import manifest from '../manifest.json';
 import { findInReactTree } from "enmity/utilities"
 import Settings from './components/Settings';
 import { getBoolean } from 'enmity/api/settings';
-import { Button, View } from 'enmity/components';
-import { cp } from 'fs';
+import { TouchableOpacity, View, Text } from 'enmity/components';
 
 const Patcher = create('unreal-profile-colors');
 const UserProfileStore = getByProps("getUserProfile");
@@ -65,16 +64,28 @@ function getFixedBio(bioString: string): string | null {
 }
 
 const styles = StyleSheet.createThemedStyleSheet({
-   divider: {
-       backgroundColor: StyleSheet.ThemeColorMap.BACKGROUND_ACCENT,
-       marginLeft: 0,
-       marginTop: 16,
-   },
-   title: {
-       flexDirection: "column",
-       paddingTop: 16
-   },
-   button: { marginTop: 16 }
+   container: {
+      backgroundColor: Constants.Colors.BRAND_500,
+
+      height: 40,
+      borderRadius: 5,
+      margin: 5,
+
+      justifyContent: 'center',
+      alignItems: 'center',
+      flexDirection: "row"
+  },
+  text: {
+      color: Constants.ThemeColorMap.TEXT_NORMAL,
+      fontFamily: Constants.PRIMARY_BOLD,
+
+      paddingLeft : 10,
+      paddingRight : 10,
+      letterSpacing: 0.25,
+      fontSize: 16,
+
+      textAlign: 'center'
+  },
 })
 
 const UnrealProfileColors: Plugin = {
@@ -104,10 +115,7 @@ const UnrealProfileColors: Plugin = {
 
         EditThemeSection?.children?.unshift(
          <View>
-            <Button 
-               color='brand'
-               title='Copy 3y3'
-               size='large'
+            <TouchableOpacity
                onPress={() => {
                   let primaryPicker;
                   let accentPicker;
@@ -130,7 +138,9 @@ const UnrealProfileColors: Plugin = {
                   Clipboard.setString(encoded);
                }}
                style={styles.button}
-            />
+            >
+               <Text style={styles.text}>Copy 3y3</Text>
+            </TouchableOpacity>
          </View>
         );
       })
