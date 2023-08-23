@@ -12,7 +12,6 @@ import { styles } from './styles';
 
 const Patcher = create('unreal-profile-colors');
 const UserProfileStore = getByProps("getUserProfile");
-const UserStore = getByProps("getUser", "getCurrentUser")
 const EditProfileTheme = getByName("EditProfileTheme", { default: false })
 
 const [
@@ -33,9 +32,10 @@ const UnrealProfileColors: Plugin = {
          if (colors) {
             result.themeColors = colors;
             result.premiumType = 2;
-            let currentUser = UserStore.getCurrentUser();
-            if(!currentUser) return result;
-            result.bio = getFixedBio(result?.bio, (currentUser?.userId == result?.userId ? '*[3y3 code only visible to you]*' : ''));
+            if(getBoolean(manifest.name, "strip", false))
+            {
+               result.bio = getFixedBio(result?.bio, '');
+            }
          }
          return result;
       });

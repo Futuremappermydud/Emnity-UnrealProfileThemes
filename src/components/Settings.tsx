@@ -39,7 +39,12 @@ export default ({ settings }: SettingsProps) => {
          <FormRow
             label="Nitro First"
             subLabel="If on then use nitro colors first if available then 3y3 colors. If off then only use 3y3 codes"
-            trailing={<FormSwitch value={settings.getBoolean("nitroFirst", true)} onValueChange={()=>{settings.toggle("nitroFirst", false);}} />}
+            trailing={<FormSwitch value={settings.getBoolean("nitroFirst", true)} onValueChange={()=>{settings.toggle("nitroFirst", true);}} />}
+         />
+         <FormRow
+            label="Show missing letters"
+            subLabel="If enabled then 3y3 codes will be stripped after parsing so that they are not visible. This will make it difficult to edit your bio."
+            trailing={<FormSwitch value={settings.getBoolean("strip", false)} onValueChange={()=>{settings.toggle("strip", false);}} />}
          />
       </View>
    </ScrollView>;
