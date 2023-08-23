@@ -1,5 +1,5 @@
-import { FormSwitch, FormRadio, FormRow, ScrollView, View } from 'enmity/components';
-import { get, getBoolean, set, SettingsStore } from 'enmity/api/settings';
+import { FormSwitch, FormRow, ScrollView, View } from 'enmity/components';
+import { SettingsStore } from 'enmity/api/settings';
 import { React, StyleSheet, Constants } from 'enmity/metro/common';
 import Credits from './Credits';
 import manifest from "../../manifest.json";
